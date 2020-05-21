@@ -1,6 +1,7 @@
 # Tidbits-backend
 
 This is the backend repo for the Tidbits project
+The frontend can be found at https://github.com/DSom20/tidbits-frontend
 
 ## How to Start Locally
 1. Clone repo and `cd` into it
