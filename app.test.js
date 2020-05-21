@@ -37,5 +37,19 @@ describe("POST /tidbits", function() {
     response = await request(app).get('/tidbits');
     expect(response.statusCode).toBe(200);
     expect(response.body).toEqual({"tidbits": ["hi", "hello", "there"]})
-  })
+  });
+
+  it("Returns with a status 400 if request is not appropriate form",
+    async function() {
+      const tidbit = 5; // number, not a string
+      response = await request(app)
+        .post('/tidbits')
+        .send({
+          "tidbit": tidbit
+        });
+      expect(response.statusCode).toBe(400);
+      expect(response.error.text).toEqual(
+        'Expecting request body to be { "tidbit": /string/ }'
+      );
+  });
 })

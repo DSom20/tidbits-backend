@@ -32,8 +32,14 @@ app.post('/tidbits', async function(request, response) {
   //   return response.status(500).end();
   // }
   const tidbit = request.body.tidbit;
-  tidbits.unshift(tidbit);
-  return response.json({ tidbit });
+  if (typeof tidbit === "string") {
+    tidbits.unshift(tidbit);
+    return response.json({ tidbit });
+  } else {
+    return response.status(400).send(
+      'Expecting request body to be { "tidbit": /string/ }'
+    );
+  }
 });
 
 module.exports = app;
